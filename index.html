@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Happy Birthday Fio! ❤️</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body{font-family:Quicksand,sans-serif;background-color:#0f172a;margin:0;overflow:hidden;color:#fff;user-select:none}.font-handwriting{font-family:'Dancing Script',cursive}.page-container{display:none;min-height:100vh;width:100%;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:1.5rem;position:relative;z-index:10;overflow-y:auto;background-size:cover;background-position:center;background-attachment:fixed}.page-container::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(15,23,42,.75);z-index:-1}.page-container *{position:relative}.active{display:flex;animation:fadeIn .6s ease}@keyframes fadeIn{from{opacity:0}to{opacity:1}}.bg-photo-1{background-image:url('img/page1.jpg')}.bg-photo-2{background-image:url('img/page2.jpg')}.bg-photo-3{background-image:url('img/page3.jpg')}.bg-photo-4{background-image:url('img/page4.jpg')}.bg-photo-5{background-image:url('img/page5.jpg')}.bg-photo-6{background-image:url('img/page6.jpg')}.envelope-wrapper{perspective:1000px;cursor:pointer;transform:scale(.9)}@media (min-width:768px){.envelope-wrapper{transform:scale(1.1)}}.envelope{position:relative;width:300px;height:200px;background:#ff4d4d;border-radius:0 0 10px 10px;box-shadow:0 10px 30px rgba(255,0,0,.2)}.flap{position:absolute;top:0;width:0;height:0;border-left:150px solid transparent;border-right:150px solid transparent;border-top:110px solid #cc0000;transform-origin:top;z-index:30}.card-inner{position:absolute;bottom:5px;left:10px;right:10px;height:185px;background:#fff5f5;border-radius:5px;z-index:20;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:20px}.animate-float{animation:floating 4s ease-in-out infinite}@keyframes floating{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}.cd-rotate{animation:spin 4s linear infinite;animation-play-state:paused}.playing .cd-rotate{animation-play-state:running}@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}.music-note{position:absolute;font-size:24px;color:#fff;pointer-events:none;z-index:100}.gallery-card{background:#fff9f0;padding:10px;border-radius:10px;box-shadow:0 20px 40px rgba(0,0,0,.3);transform:rotate(-1deg);max-width:90%;width:320px}.gallery-img{width:100%;height:300px;object-fit:cover;border-radius:5px;border:4px solid #fff}.puzzle-board{width:300px;height:300px;position:relative;background:rgba(255,255,255,.1);border-radius:20px;border:2px dashed #ff6b9d;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);margin:20px auto}.puzzle-piece{width:100px;height:100px;position:absolute;cursor:grab;border-radius:8px;border:1px solid #fff;background-size:300px 300px;z-index:100;touch-action:none}.puzzle-slot{width:100%;height:100%;border:1px solid rgba(255,107,157,.2)}
+    </style>
+</head>
+<body oncontextmenu="return false;">
+
+    <audio id="audioStart" src="perfect.mp3" loop></audio>
+    <audio id="audioMain" src="its you.mp3" loop></audio>
+
+    <div id="landing" class="page-container active bg-slate-900">
+        <div class="envelope-wrapper" onclick="openMessage()">
+            <div class="envelope flex items-center justify-center">
+                <div id="flap" class="flap"></div>
+                <div id="card" class="card-inner shadow-xl p-4">
+                    <p class="text-[10px] font-bold text-red-500 uppercase tracking-widest">Tap to see message</p>
+                </div>
+                <div id="seal" class="absolute z-40 bg-white rounded-full p-3 shadow-lg flex items-center justify-center" style="top:50%;transform:translateY(-50%)"><span class="text-red-500 text-2xl">❤️</span></div>
+            </div>
+        </div>
+        <p class="text-white/50 mt-12 text-sm animate-pulse text-center px-4">Click the envelope, fioo...</p>
+    </div>
+
+    <div id="content" class="page-container bg-photo-1">
+        <div class="bg-[#fff9f0] w-full max-w-sm md:max-w-md p-6 md:p-8 rounded-xl border-[6px] border-red-800 shadow-2xl relative z-40">
+            <img id="balon-1" src="img/balon1.jpg" class="absolute w-24 md:w-32 opacity-0 z-10 animate-float" style="left:-40px;top:-400px">
+            <img id="balon-2" src="img/balon2.jpg" class="absolute w-24 md:w-32 opacity-0 z-10 animate-float" style="right:-40px;top:-450px">
+            <div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-red-800 rounded-full p-4 border-4 border-[#fff9f0] z-50">❤️</div>
+            <div class="text-center pt-8">
+                <p class="text-xs font-bold mb-2 uppercase text-red-800/60">20 . 05 . 2002</p>
+                <h1 id="headline" class="font-handwriting text-4xl md:text-5xl text-red-800 mb-6 leading-tight">Happy Birthday Princess 👑</h1>
+                <div id="photo-container" class="hidden flex justify-center mb-6"><div class="relative w-40 h-40 border-4 border-red-800 rounded-full overflow-hidden shadow-lg scale-0 transition-transform duration-700 bg-white"><img src="img/cewek.jpg" class="w-full h-full object-cover"></div></div>
+                <div id="default-icons" class="flex justify-center gap-4 mb-6 text-4xl">🎂💐</div>
+                <div class="flex flex-col gap-3 items-center border-t-2 border-red-800/20 pt-6">
+                    <button id="showGirlBtn" onclick="showBirthdayGirl()" class="bg-red-800 text-white text-[10px] px-6 py-2 rounded-full font-bold uppercase tracking-widest shadow-lg">Who is the prettiest birthday girl?</button>
+                    <button id="nextWishBtn" onclick="showPage('wish-screen')" class="hidden bg-red-600 text-white text-[10px] px-8 py-2 rounded-full font-bold uppercase tracking-widest animate-bounce">Next to Wish →</button>
+                </div>
+            </div>  
+        </div>
+    </div>
+
+    <div id="wish-screen" class="page-container bg-photo-2">
+        <div class="bg-[#fff9f0] w-full max-w-sm md:max-w-md p-6 md:p-8 rounded-xl border-[6px] border-red-800 shadow-2xl">
+            <h2 class="font-handwriting text-3xl text-red-800 mb-4 border-b-2 border-red-800/10 pb-2">A Special Wish</h2>
+           <div class="custom-scroll max-h-[50vh] overflow-y-auto pr-2 text-red-800/90 text-sm text-justify space-y-4">
+    <p class="font-bold text-center">Happy Birthday, Fiooo 🤍</p>
+
+    <p>Aku seneng banget bisa kenal dan deket sama kamu sampai sekarang.</p>
+
+    <p>Thank you for making my days feel happier and warmer in the simplest way. Presence kamu bener-bener berarti buat aku.</p>
+
+    <p>Aku harap di umur ke 24 ini kamu selalu dikelilingi hal-hal baik, banyak bahagia, dan semua yang kamu harapin bisa tercapai.</p>
+
+    <p>Don’t forget to always smile, because your smile always makes everything feel better.</p>
+
+    <p>And honestly, aku harap ini bukan cuma sementara. I hope we can keep staying together, growing together, and being part of each other’s lives for a long time.</p>
+
+    <p class="font-bold italic text-center">happy birthday once again 🤍</p>
+</div>
+            <button onclick="showPage('music-screen')" class="mt-6 bg-red-600 text-white px-8 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest">song remind about you →</button>
+        </div>
+    </div>
+
+    <div id="music-screen" class="page-container bg-photo-3">
+        <h2 class="text-white font-handwriting text-4xl mb-12 drop-shadow-lg">Songs Remind of You 🎵</h2>
+        <div class="relative w-56 h-56 md:w-64 md:h-64 mx-auto mb-10">
+            <div id="cd-player-wrap" class="absolute inset-0 bg-zinc-900 rounded-full border-8 border-zinc-800 shadow-2xl">
+                <div id="cd-player" class="w-full h-full rounded-full overflow-hidden cd-rotate"><img src="img/song.jpg" class="w-full h-full object-cover"></div>
+                <div class="absolute inset-[44%] bg-gradient-to-br from-red-600 to-red-800 rounded-full border-4 border-zinc-900 z-10"></div>
+            </div>
+        </div>
+        <div class="fixed right-5 top-1/2 -translate-y-1/2 flex flex-col gap-4 bg-black/30 p-4 rounded-full backdrop-blur-md z-50">
+            <button onclick="toggleMusic()" class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-red-600"><span id="playIcon">⏸️</span></button>
+        </div>
+        <button onclick="showPage('gallery-1')" class="bg-red-600 text-white px-8 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest">your beautiful little moments →</button>
+    </div>
+
+    <div id="gallery-hook"></div>
+
+    <div id="game-screen" class="page-container bg-photo-4">
+        <h1 class="font-handwriting text-4xl mb-4 text-white">Susun Puzzle-nya! ❤️</h1>
+        <div class="puzzle-board" id="board">
+            <div class="puzzle-slot" data-idx="0"></div><div class="puzzle-slot" data-idx="1"></div><div class="puzzle-slot" data-idx="2"></div>
+            <div class="puzzle-slot" data-idx="3"></div><div class="puzzle-slot" data-idx="4"></div><div class="puzzle-slot" data-idx="5"></div>
+            <div class="puzzle-slot" data-idx="6"></div><div class="puzzle-slot" data-idx="7"></div><div class="puzzle-slot" data-idx="8"></div>
+        </div>
+        <div id="pieces-container" class="flex flex-wrap justify-center gap-2 mt-6 max-w-md"></div>
+        <button id="btnNextPhoto" onclick="showPage('final-page')" class="hidden bg-red-600 text-white px-10 py-3 rounded-full font-bold shadow-lg mt-4">finish! 🎉</button>
+    </div>
+
+    <div id="final-page" class="page-container bg-photo-5">
+        <div class="bg-[#fff9f0] w-full max-w-sm p-6 rounded-xl border-[6px] border-red-800 shadow-2xl text-red-800">
+            <div class="w-40 h-40 border-4 border-red-800 rounded-full overflow-hidden mx-auto mb-4 bg-white shadow-lg"><img src="img/cewek.jpg" class="w-full h-full object-cover"></div>
+            <h2 class="font-handwriting text-3xl mb-4">You did it! 🎉❤️</h2>
+            <p class="font-bold mb-6">Forever yours, fioo! 💕</p>
+            <button onclick="location.reload()" class="bg-red-800 text-white px-8 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest">Restart 🔄</button>
+        </div>
+    </div>
+
+    <template id="gallery-template">
+        <div class="page-container bg-photo-6">
+            <div class="gallery-card"><img class="gallery-img"><p class="text-red-800 font-handwriting text-xl mt-4 gallery-caption"></p></div>
+            <div class="mt-8 flex gap-4"><button class="nav-prev bg-white/10 px-6 py-2 rounded-full text-xs border border-white/20">Prev</button><button class="nav-next bg-red-600 px-8 py-2 rounded-full text-xs font-bold shadow-lg">Next</button></div>
+        </div>
+    </template>
+
+    <script>
+        document.onkeydown=e=>{if(e.keyCode==123||(e.ctrlKey&&e.shiftKey&&(e.keyCode==73||e.keyCode==74||e.keyCode==67))||(e.ctrlKey&&e.keyCode==85))return!1};
+        const audioStart=document.getElementById('audioStart'),audioMain=document.getElementById('audioMain');let currentAudio=null,isMutedManual=!1,noteInterval;const galleryData=[{img:"img/page1.jpg",cap:"happy sweet 24th fio💕"},{img:"img/page2.jpg",cap:"that beauty is out of this world 😍"},{img:"img/page3.jpg",cap:"radiant beauty, inside & out 🤍"},{img:"img/page4.jpg",cap:"literally the most beautiful girl ever ⭐"},{img:"img/page5.jpg",cap:"jaw-droppingly gorgeous 👑✨"},{img:"img/page6.jpg",cap:"ethereal beauty, timeless elegance 💖"},{img:"img/page7.jpg",cap:"pure perfection captured in one frame 🥰💕"}];
+        function setupGallery(){const h=document.getElementById('gallery-hook'),t=document.getElementById('gallery-template');galleryData.forEach((d,i)=>{const c=t.content.cloneNode(!0),p=c.querySelector('.page-container'),m=c.querySelector('.gallery-img');p.id=`gallery-${i+1}`;m.src=d.img;c.querySelector('.gallery-caption').innerText=d.cap;c.querySelector('.nav-prev').onclick=()=>showPage(i===0?'music-screen':`gallery-${i}`);c.querySelector('.nav-next').onclick=()=>showPage(i===galleryData.length-1?'game-screen':`gallery-${i+2}`);h.appendChild(c)})}
+        function playTargetMusic(t){if(currentAudio&&currentAudio!==t){currentAudio.pause();currentAudio.currentTime=0}currentAudio=t;if(!isMutedManual){currentAudio.play().catch(e=>0);document.getElementById('playIcon').innerText="⏸️"}}
+        function showPage(id){document.querySelectorAll('.page-container').forEach(p=>p.classList.remove('active'));const t=document.getElementById(id);if(t)t.classList.add('active');if(id==='content'||id==='wish-screen')playTargetMusic(audioStart);else if(id==='music-screen'||id.includes('gallery')||id==='game-screen'||id==='final-page'){playTargetMusic(audioMain);if(id==='music-screen')startMusicNotes()}if(id==='game-screen')startGame();if(id==='wish-screen'||id==='final-page')confetti({particleCount:100,spread:80,origin:{y:.5}});updateCDStatus()}
+        function toggleMusic(){if(!currentAudio)return;if(currentAudio.paused){currentAudio.play();isMutedManual=!1;document.getElementById('playIcon').innerText="⏸️"}else{currentAudio.pause();isMutedManual=!0;document.getElementById('playIcon').innerText="▶️"}updateCDStatus()}
+        function updateCDStatus(){const c=document.getElementById('cd-player');if(currentAudio===audioMain&&!currentAudio.paused)c.style.animationPlayState='running';else c.style.animationPlayState='paused'}
+        function openMessage(){gsap.timeline().to("#seal",{scale:0,opacity:0,duration:.4}).to("#flap",{rotateX:180,duration:.5}).to("#card",{y:-150,zIndex:50,duration:.6}).to("#landing",{opacity:0,duration:.4,onComplete:()=>{document.getElementById('landing').style.display='none';showPage('content')}})}
+        function showBirthdayGirl(){document.getElementById('headline').innerText="My Birthday Girl";document.getElementById('default-icons').classList.add('hidden');const pc=document.getElementById('photo-container');pc.classList.remove('hidden');setTimeout(()=>pc.querySelector('div').classList.add('scale-100'),50);gsap.to("#balon-1",{opacity:1,top:"20%",duration:2,ease:"bounce.out"});gsap.to("#balon-2",{opacity:1,top:"25%",duration:2.2,ease:"bounce.out",delay:.1});document.getElementById('showGirlBtn').classList.add('hidden');document.getElementById('nextWishBtn').classList.remove('hidden');confetti({particleCount:150,spread:70,origin:{y:.6}})}
+        function startMusicNotes(){if(noteInterval)clearInterval(noteInterval);noteInterval=setInterval(()=>{if(currentAudio&&!currentAudio.paused){const n=document.createElement('div');n.className='music-note';n.innerText='🎵';n.style.left=(Math.random()*80+10)+'vw';n.style.bottom='10%';document.body.appendChild(n);gsap.to(n,{y:-window.innerHeight,opacity:0,duration:4,onComplete:()=>n.remove()})}},500)}
+        function startGame(){gsap.registerPlugin(Draggable);const c=document.getElementById('pieces-container'),b=document.getElementById('board'),s=document.querySelectorAll('.puzzle-slot');c.innerHTML='';let solved=0;document.getElementById('btnNextPhoto').classList.add('hidden');const pOrder=[0,1,2,3,4,5,6,7,8];const shuffled=[...pOrder].sort(()=>Math.random()-.5);shuffled.forEach((val)=>{const p=document.createElement('div');p.className='puzzle-piece';p.style.backgroundImage="url('img/puzzle.jpg')";const r=Math.floor(val/3),col=val%3;p.style.backgroundPosition=`-${col*100}px -${r*100}px`;p.dataset.correctIdx=val;c.appendChild(p);Draggable.create(p,{onRelease:function(){let snapped=!1;const r1=p.getBoundingClientRect();s.forEach(slot=>{const r2=slot.getBoundingClientRect();if(Math.abs(r1.left-r2.left)<30&&Math.abs(r1.top-r2.top)<30&&slot.dataset.idx==p.dataset.correctIdx){p.style.pointerEvents='none';b.appendChild(p);gsap.to(p,{duration:.3,left:slot.offsetLeft,top:slot.offsetTop,x:0,y:0});solved++;snapped=!0;if(solved===9){confetti({particleCount:100});document.getElementById('btnNextPhoto').classList.remove('hidden')}}});if(!snapped)gsap.to(p,{x:0,y:0,duration:.3})}})})};setupGallery();
+    </script>
+</body>
+</html>
